@@ -27,10 +27,11 @@ def bin_search(target, low, high, int_list):  # must use recursion
    If target is not found returns None. If list is None, raises ValueError """
    if(int_list == None):
       raise ValueError
-   if(target == int_list[len(int_list)//2]):
-      return(int_list[len(int_list)//2])   
-   elif(target < int_list[len(int_list)//2]):   
-      return(bin_search(target, low, high, int_list[:(len(int_list)//2)]))
-   elif(target > int_list[len(int_list)//2]):
-      return(bin_search(target, low, high, int_list[(len(int_list)//2):]))
-   return(None)
+   if(target == int_list[(high + low)//2]):
+      return(int_list[(high + low)//2])   
+   if(high-1 == low and target != int_list[(high + low)//2]):
+      return None
+   elif(target < int_list[(high + low)//2]):   
+      return(bin_search(target, low, ((high + low)//2), int_list))
+   elif(target > int_list[(high + low)//2]):
+      return(bin_search(target, ((high + low)//2), high, int_list))
